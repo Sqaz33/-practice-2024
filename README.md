@@ -2,4 +2,4 @@
 
 
 *Реализуем это*
-[text](https://habr.com/ru/articles/547218/) 
+[сатья на хабре про openCV](https://habr.com/ru/articles/547218/) 
