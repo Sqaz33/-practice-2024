@@ -79,9 +79,12 @@ void MainWindow::selectImg() {
     QString path = QFileDialog::getOpenFileName(
         this, 
         tr("Open Image"), 
-        "D:/", 
+        "C:/", 
         tr("Image Files (*.png *.jpg *.bmp)")
     );
+    if (!path.length()) {
+        return;
+    }
     img = new cv::Mat(
         cv::imread(path.toStdString())
     );
