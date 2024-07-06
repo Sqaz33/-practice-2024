@@ -16,9 +16,9 @@ class Petri:
     def get_thresh(self, image: cv2.Mat, thres: int) -> cv2.Mat:
         blurred = cv2.GaussianBlur(image, (3, 3), 0)
         _, thresh_img = cv2.threshold(blurred, thres, 255, cv2.THRESH_BINARY)
-        return thresh_img
-
-    def is_circle(self, contour, threshold=0.2) -> bool:
+        return cv2.cvtColor(thresh_img, cv2.COLOR_BGR2GRAY)
+    
+    def is_circle(self, contour, threshold=0.3) -> bool:
         # Вычисляем периметр
         perimeter = cv2.arcLength(contour, True)
         # Аппроксимируем контур
@@ -42,8 +42,12 @@ class Petri:
 
     def get_cnts(self, image: cv2.Mat, thres: int):
         thresh_img = self.get_thresh(image, thres)
-        if len(thresh_img.shape) == 3 and thresh_img.shape[2] == 3:
-            thresh_img = cv2.cvtColor(thresh_img, cv2.COLOR_BGR2GRAY)
+        
+        # if len(thresh_img.shape) == 3 and thresh_img.shape[2] == 3:
+        #     thresh_img = cv2.cvtColor(thresh_img, cv2.COLOR_BGR2GRAY)
+        # thresh_img =  thresh_img.astype(np.uint8)
+
+        # print(thresh_img.type())
         contours, _ = cv2.findContours(thresh_img, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
         return contours
 
@@ -107,7 +111,7 @@ class App:
 
 
 if __name__ == '__main__':
-    app = App('Mammalian_Cells_CytotoxicityAssay_M.Waggoner_KUMC_1.jpg')
+    app = App('q120404-01.jpg')
     app.run()
 
 
