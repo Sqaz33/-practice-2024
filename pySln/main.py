@@ -95,7 +95,6 @@ class App:
 
         image_with_contours = cv2.cvtColor(image_with_contours, cv2.COLOR_BGR2RGB)
 
-        plt.imread('M.jpg')
         height, width, channel = image_with_contours.shape
         bytes_per_line = channel * width
         q_image = QImage(image_with_contours.data, width, height, bytes_per_line, QImage.Format.Format_RGB888)
