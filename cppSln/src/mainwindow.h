@@ -1,7 +1,13 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include <opencv2/opencv.hpp>
 #include <QMainWindow>
+#include <QPixMap>
+#include <QImage>
+#include <QString>
+#include <QObject>
+#include <QSlider>
 
 #include "petri.h"
 
@@ -20,6 +26,15 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    petri::Petri& petri;
+
+    //TODO:
+    //---------------------------------------------------------------------------------------------------
+    cv::Mat* img = new cv::Mat(cv::imread("D:/Practice-2024/cppSln/src/q120404-01.jpg", cv::IMREAD_COLOR));
+    //---------------------------------------------------------------------------------------------------
+
+private slots:
+    void circleColonies(); 
 };
 
 #endif // MAINWINDOW_H

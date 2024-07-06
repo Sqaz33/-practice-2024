@@ -30,7 +30,7 @@ namespace petri {
             cv::Mat& outImg,
             int threshold,
             double circularityThresh = 0.3, 
-            int gaussianKernelSize = 13,
+            int gaussianKernelSize = 3,
             RoundColours colour = RoundColours::GREEN
         );
         //.... возможны еще методы обрисовки или их совмщение

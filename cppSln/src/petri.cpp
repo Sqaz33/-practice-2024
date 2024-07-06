@@ -10,19 +10,19 @@ namespace {
         );
     }
 
-    void thresholdImg(cv::Mat& img, int threshold) {
+    void thresholdImg(cv::Mat& img, int thresholdValue) {
         if (img.channels() > 1) {
             cv::cvtColor(img, img, cv::COLOR_BGR2GRAY);
         }
-        cv::adaptiveThreshold(
+        cv::Mat binary;
+        cv::threshold(
             img,     
-            img,         
-            threshold,            
-            cv::ADAPTIVE_THRESH_GAUSSIAN_C,
-            cv::THRESH_BINARY,
-            11,             
-            2               
+            binary,         
+            thresholdValue,            
+            255,
+            cv::THRESH_BINARY           
         );
+        img = binary;
     } 
 
     void getContoursByThresholdImg(const cv::Mat& img, std::vector<cv::Mat>& outContours) {
