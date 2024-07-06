@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.16.3)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 
 project(Petri)
@@ -10,14 +10,20 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
 
 find_package(OpenCV REQUIRED)
-find_package(Qt5 COMPONENTS REQUIRED Core)
+find_package(Qt5 COMPONENTS REQUIRED Core Widgets)
 
 include_directories(src)
 include_directories(${OpenCV_INCLUDE_DIRS})
 
-add_executable(petri src/main.cpp)
+add_executable(petri 
+    src/main.cpp 
+    src/petri.cpp
+    src/mainwindow.ui
+    src/mainwindow.cpp
+)
 
 target_link_libraries(petri 
     PRIVATE ${OpenCV_LIBS}
     PRIVATE Qt5::Core
+    PRIVATE Qt5::Widgets
 )
