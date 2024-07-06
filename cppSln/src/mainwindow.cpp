@@ -42,10 +42,13 @@ MainWindow::MainWindow(QWidget *parent)
             &MainWindow::circleColonies
     );
 
-    ui->horizontalSlider->setValue(150);
-    circleColonies();
+    connect(ui->pushButton,
+            &QPushButton::clicked, 
+            this, 
+            &MainWindow::selectImg
+    );
 
-    //TODO: сделать выбор картинки
+    ui->horizontalSlider->setValue(150);
 
 }
 
@@ -53,7 +56,12 @@ MainWindow::~MainWindow() {
     delete ui;
 }
 
+
 void MainWindow::circleColonies() {
+    ui->label_3->setText("Пороговое значение яркости пикселя: " + QString::number(ui->horizontalSlider->value()));
+    if (img == nullptr) {
+        return;
+    }
     cv::Mat out;
 
     int coloniesCount = petri.circleRoundColonies(*img, out, ui->horizontalSlider->value());
@@ -65,6 +73,17 @@ void MainWindow::circleColonies() {
     ui->label_2->setPixmap(map);
 
     ui->label->setText("Количество колоний: " + QString::number(coloniesCount));
-    ui->label_3->setText("Пороговое значение яркости пикселя: " + QString::number(ui->horizontalSlider->value()));
-    
+}
+
+void MainWindow::selectImg() {
+    QString path = QFileDialog::getOpenFileName(
+        this, 
+        tr("Open Image"), 
+        "D:/", 
+        tr("Image Files (*.png *.jpg *.bmp)")
+    );
+    img = new cv::Mat(
+        cv::imread(path.toStdString())
+    );
+    circleColonies();
 }

@@ -15,11 +15,14 @@ find_package(Qt5 COMPONENTS REQUIRED Core Widgets)
 include_directories(src)
 include_directories(${OpenCV_INCLUDE_DIRS})
 
+set(app_icon_resource_windows "${CMAKE_CURRENT_SOURCE_DIR}/src/resources.rc")
+
 add_executable(petri 
     src/main.cpp 
     src/petri.cpp
     src/mainwindow.ui
     src/mainwindow.cpp
+    ${app_icon_resource_windows}
 )
 
 target_link_libraries(petri 
@@ -27,3 +30,4 @@ target_link_libraries(petri
     PRIVATE Qt5::Core
     PRIVATE Qt5::Widgets
 )
+

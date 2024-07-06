@@ -1,0 +1,5 @@
+// Файл: photosurface.rc
+
+#include "winuser.h"
+
+IDI_ICON1               ICON                    "petri.ico"

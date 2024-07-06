@@ -8,6 +8,8 @@
 #include <QString>
 #include <QObject>
 #include <QSlider>
+#include <QFileDialog>
+#include <QPushButton>
 
 #include "petri.h"
 
@@ -28,13 +30,11 @@ private:
     Ui::MainWindow *ui;
     petri::Petri& petri;
 
-    //TODO:
-    //---------------------------------------------------------------------------------------------------
-    cv::Mat* img = new cv::Mat(cv::imread("D:/Practice-2024/cppSln/src/q120404-01.jpg", cv::IMREAD_COLOR));
-    //---------------------------------------------------------------------------------------------------
 
+    cv::Mat* img = nullptr;
 private slots:
     void circleColonies(); 
+    void selectImg();
 };
 
 #endif // MAINWINDOW_H

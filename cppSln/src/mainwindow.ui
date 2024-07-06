@@ -18,9 +18,16 @@
     <item row="0" column="0">
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
+       <widget class="QPushButton" name="pushButton">
+        <property name="text">
+         <string>Выбрать файл</string>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QLabel" name="label">
         <property name="text">
-         <string>TextLabel</string>
+         <string/>
         </property>
         <property name="scaledContents">
          <bool>true</bool>
@@ -30,7 +37,7 @@
       <item>
        <widget class="QLabel" name="label_2">
         <property name="text">
-         <string>TextLabel</string>
+         <string/>
         </property>
         <property name="scaledContents">
          <bool>true</bool>
