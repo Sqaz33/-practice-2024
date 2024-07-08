@@ -14,19 +14,17 @@ namespace {
         if (img.channels() > 1) {
             cv::cvtColor(img, img, cv::COLOR_BGR2GRAY);
         }
-        cv::Mat binary;
         cv::threshold(
             img,     
-            binary,         
+            img,         
             thresholdValue,            
             255,
             cv::THRESH_BINARY           
         );
-        img = binary;
     } 
 
     void getContoursByThresholdImg(const cv::Mat& img, std::vector<cv::Mat>& outContours) {
-        cv::findContours(img, outContours, cv::RETR_LIST, cv::CHAIN_APPROX_SIMPLE);
+        cv::findContours(img, outContours, cv::RETR_LIST, cv::CHAIN_APPROX_SIMPLE); // вызывается эта функция  
     }
 
     bool isCircleContour(const cv::Mat& contour, double circularityThreshold) {

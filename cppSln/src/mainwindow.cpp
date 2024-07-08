@@ -64,13 +64,16 @@ void MainWindow::circleColonies() {
     }
     cv::Mat out;
 
-    int coloniesCount = petri.circleRoundColonies(*img, out, ui->horizontalSlider->value());
-
-
-    QPixmap map = matToPixmap(out);
-    ui->label_2->setMaximumHeight(map.size().height());
-    ui->label_2->setMaximumWidth(map.size().width());
-    ui->label_2->setPixmap(map);
+    int coloniesCount = 0;
+    try {
+        coloniesCount = petri.circleRoundColonies(*img, out, ui->horizontalSlider->value());
+        QPixmap map = matToPixmap(out);
+        ui->label_2->setMaximumHeight(map.size().height());
+        ui->label_2->setMaximumWidth(map.size().width());
+        ui->label_2->setPixmap(map);
+    } catch(...) {
+        ui->label_2->clear();
+    }
 
     ui->label->setText("Количество колоний: " + QString::number(coloniesCount));
 }
@@ -85,8 +88,13 @@ void MainWindow::selectImg() {
     if (!path.length()) {
         return;
     }
+
+    if (img != nullptr) {
+        delete img;
+    }
     img = new cv::Mat(
-        cv::imread(path.toStdString())
+        cv::imread(path.toStdString(), cv::IMREAD_COLOR)
     );
+
     circleColonies();
 }
